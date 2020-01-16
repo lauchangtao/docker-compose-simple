@@ -1,0 +1,18 @@
+version: '2'
+services:
+  tomcat:
+    hostname: tomcat-yaoqishan
+    container_name: tomcat-yaoqishan
+    image: tomcat:8
+    ports:
+      - 8081:8080
+    dns:
+      - 172.18.8.254
+    volumes:
+      - ./webapps:/usr/local/tomcat/webapps
+      - ./logs:/usr/local/tomcat/logs
+    environment:
+      JAVA_OPTS: -Dfile.encoding=UTF-8
+      TZ: Asia/Shanghai
+      LANG: en_US.UTF-8
+    restart: always
