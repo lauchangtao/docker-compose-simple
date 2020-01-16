@@ -1,0 +1,49 @@
+#!/bin/bash
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+groupadd docker
+
+useradd -g docker docker
+
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+
+sleep 3
+
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+sleep 3
+
+sudo yum -y install docker-ce-18.06.1.ce
+
+sudo systemctl enable docker
+
+sudo systemctl start docker
+
+sleep 3
+
+docker version
+
+
+find /lib/systemd/system/docker.service |xargs perl -pi -e 's|ExecStart=\/usr\/bin\/dockerd|ExecStart=\/usr\/bin\/dockerd \-H tcp:\/\/0\.0\.0\.0\:2375 \-H unix\:\/\/\/var\/run\/docker\.sock \-H tcp\:\/\/0.0.0.0:7654|g' 
+
+echo "export DOCKER_HOST=tcp://0.0.0.0:2375" >> /root/.bashrc
+
+source ~/.bashrc
+
+sudo systemctl daemon-reload
+
+sudo systemctl restart docker
+
+sleep 3
+
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+
+sudo curl -L https://raw.githubusercontent.com/docker/compose/1.21.2/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
+
+docker-compose --version
+
+yum clean headers && yum clean packages && yum clean metadata
