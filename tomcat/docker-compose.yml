@@ -6,8 +6,8 @@ services:
     image: tomcat:8
     ports:
       - 8081:8080
-    dns:
-      - 172.18.8.254
+    #dns:
+    #  - 172.18.8.254
     volumes:
       - ./webapps:/usr/local/tomcat/webapps
       - ./logs:/usr/local/tomcat/logs
