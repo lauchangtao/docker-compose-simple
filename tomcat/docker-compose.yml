@@ -2,7 +2,7 @@ version: '2'
 services:
   tomcat:
     hostname: tomcat-yaoqishan
-    container_name: tomcat-yaoqishan
+    container_name: tomcat-yaoqishan
     image: tomcat:8
     ports:
       - 8081:8080
