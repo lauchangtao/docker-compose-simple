@@ -5,11 +5,10 @@ services:
     container_name: redis-sentinel-1
     command: redis-sentinel /usr/local/etc/redis/sentinel.conf
     restart: always
-#    network_mode: "host"
     ports:
       - 26379:26379
     volumes:
-      - ./sentinel1.conf:/usr/local/etc/redis/sentinel.conf:rw
+      - ./sentinel1.conf:/usr/local/etc/redis/sentinel.conf
     environment:
       - TZ=Asia/Shanghai
 
@@ -20,9 +19,8 @@ services:
     restart: always
     ports:
       - 26380:26379
-#    network_mode: "host"
     volumes:
-      - ./sentinel2.conf:/usr/local/etc/redis/sentinel.conf:rw
+      - ./sentinel2.conf:/usr/local/etc/redis/sentinel.conf
     environment:
       - TZ=Asia/Shanghai
 
@@ -31,10 +29,9 @@ services:
     container_name: redis-sentinel-3
     command: redis-sentinel /usr/local/etc/redis/sentinel.conf
     restart: always
- #   network_mode: "host"
     ports:
       - 26381:26379
     volumes:
-      - ./sentinel3.conf:/usr/local/etc/redis/sentinel.conf:rw
+      - ./sentinel3.conf:/usr/local/etc/redis/sentinel.conf
     environment:
       - TZ=Asia/Shanghai
