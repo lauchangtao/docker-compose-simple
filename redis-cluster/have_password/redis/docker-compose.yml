@@ -1,45 +1,31 @@
-version: '3.4'
+version: '3.7'
 services:
   master:
     image: redis
     container_name: redis-master
     restart: always
-    command: redis-server /etc/redis/redis.conf --appendonly yes
-    volumes:
-          - ./conf/redis.conf:/etc/redis/redis.conf:rw
-          - ./data/redis-master:/data:rw
-#    network_mode: "host"
+    command: redis-server --port 6379 --requirepass 1234  --appendonly yes
     ports:
       - 6379:6379
-    environment:
-              - TZ=Asia/Shanghai
+    volumes:
+      - ./data/master:/data
 
   slave1:
     image: redis
     container_name: redis-slave-1
     restart: always
-    command: redis-server /etc/redis/redis.conf --slaveof 172.20.80.159 6379 --port 6380 --requirepass 1234 --masterauth 1234
-#    network_mode: "host"
-    volumes:
-         - ./conf/redis.conf:/etc/redis/redis.conf:rw
-         - ./data/redis-slave-1:/data:rw
+    command: redis-server --slaveof 172.20.80.159 6379 --port 6380  --requirepass 1234 --masterauth 1234  --appendonly yes
     ports:
-      - 6380:6379
-    environment:
-          - TZ=Asia/Shanghai
-
+      - 6380:6380
+    volumes:
+      - ./data/slave-1:/data
 
   slave2:
     image: redis
     container_name: redis-slave-2
     restart: always
-    command: redis-server /etc/redis/redis.conf --slaveof 172.20.80.159 6379 --port 6381 --requirepass 1234 --masterauth 1234
-    volumes:
-         - ./conf/redis.conf:/etc/redis/redis.conf:rw
-         - ./data/redis-slave-2:/data:rw
-#    network_mode: "host"
+    command: redis-server --slaveof 172.20.80.159 6379 --port 6381  --requirepass 1234 --masterauth 1234  --appendonly yes
     ports:
-      - 6381:6379
-    environment:
-              - TZ=Asia/Shanghai
-
+      - 6381:6381
+    volumes:
+      - ./data/slave-2:/data
