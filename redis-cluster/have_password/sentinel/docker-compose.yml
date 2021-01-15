@@ -9,7 +9,7 @@ services:
     ports:
       - 26379:26379
     volumes:
-      - ./sentinel1.conf:/usr/local/etc/redis/sentinel.conf
+      - ./sentinel1.conf:/usr/local/etc/redis/sentinel.conf:rw
     environment:
       - TZ=Asia/Shanghai
 
@@ -22,7 +22,7 @@ services:
       - 26380:26379
 #    network_mode: "host"
     volumes:
-      - ./sentinel2.conf:/usr/local/etc/redis/sentinel.conf
+      - ./sentinel2.conf:/usr/local/etc/redis/sentinel.conf:rw
     environment:
       - TZ=Asia/Shanghai
 
@@ -35,6 +35,6 @@ services:
     ports:
       - 26381:26379
     volumes:
-      - ./sentinel3.conf:/usr/local/etc/redis/sentinel.conf
+      - ./sentinel3.conf:/usr/local/etc/redis/sentinel.conf:rw
     environment:
       - TZ=Asia/Shanghai
