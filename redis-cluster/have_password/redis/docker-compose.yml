@@ -4,7 +4,10 @@ services:
     image: redis
     container_name: redis-master
     restart: always
-    command: redis-server --port 6379 --requirepass 1234
+    command: redis-server /etc/redis/redis.conf --appendonly yes
+    volumes:
+          - ./conf/redis.conf:/etc/redis/redis.conf:rw
+          - ./data/redis-master:/data:rw
 #    network_mode: "host"
     ports:
       - 6379:6379
