@@ -10,6 +10,8 @@ services:
       - 26379:26379
     volumes:
       - ./sentinel1.conf:/usr/local/etc/redis/sentinel.conf
+    environment:
+      - TZ=Asia/Shanghai
 
   sentinel2:
     image: redis
@@ -21,6 +23,8 @@ services:
 #    network_mode: "host"
     volumes:
       - ./sentinel2.conf:/usr/local/etc/redis/sentinel.conf
+    environment:
+      - TZ=Asia/Shanghai
 
   sentinel3:
     image: redis
@@ -32,3 +36,5 @@ services:
       - 26381:26379
     volumes:
       - ./sentinel3.conf:/usr/local/etc/redis/sentinel.conf
+    environment:
+      - TZ=Asia/Shanghai
