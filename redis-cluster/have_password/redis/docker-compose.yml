@@ -9,6 +9,8 @@ services:
       - 6379:6379
     volumes:
       - ./data/master:/data
+    environment:
+      - TZ=Asia/Shanghai
 
   slave1:
     image: redis
@@ -19,6 +21,8 @@ services:
       - 6380:6380
     volumes:
       - ./data/slave-1:/data
+    environment:
+      - TZ=Asia/Shanghai
 
   slave2:
     image: redis
@@ -29,3 +33,5 @@ services:
       - 6381:6381
     volumes:
       - ./data/slave-2:/data
+    environment:
+      - TZ=Asia/Shanghai
