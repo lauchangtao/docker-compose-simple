@@ -16,8 +16,11 @@ services:
     image: redis
     container_name: redis-slave-1
     restart: always
-    command: redis-server --slaveof 172.20.80.159 6379 --port 6380 --requirepass 1234 --masterauth 1234
+    command: redis-server /etc/redis/redis.conf --slaveof 172.20.80.159 6379 --port 6380 --requirepass 1234 --masterauth 1234
 #    network_mode: "host"
+    volumes:
+         - ./conf/redis.conf:/etc/redis/redis.conf:rw
+         - ./data/redis-slave-1:/data:rw
     ports:
       - 6380:6379
 
@@ -26,7 +29,10 @@ services:
     image: redis
     container_name: redis-slave-2
     restart: always
-    command: redis-server --slaveof 172.20.80.159 6379 --port 6381 --requirepass 1234 --masterauth 1234
+    command: redis-server /etc/redis/redis.conf --slaveof 172.20.80.159 6379 --port 6381 --requirepass 1234 --masterauth 1234
+    volumes:
+         - ./conf/redis.conf:/etc/redis/redis.conf:rw
+         - ./data/redis-slave-2:/data:rw
 #    network_mode: "host"
     ports:
       - 6381:6379
