@@ -6,7 +6,7 @@ services:
     ports:
       - 26379:26379
     volumes:
-      - ./sentinel1.conf:/etc/redis/sentinel.conf
+       - ./conf/1:/etc/redis
     command: redis-sentinel /etc/redis/sentinel.conf
     restart: always
     environment:
@@ -18,7 +18,7 @@ services:
     ports:
       - 26380:26379
     volumes:
-      - ./sentinel2.conf:/etc/redis/sentinel.conf
+      - ./conf/2:/etc/redis
     command: redis-sentinel /etc/redis/sentinel.conf
     restart: always
     environment:
@@ -30,7 +30,7 @@ services:
     ports:
       - 26381:26379
     volumes:
-      - ./sentinel3.conf:/etc/redis/sentinel.conf
+      - ./conf/2:/etc/redis
     command: redis-sentinel /etc/redis/sentinel.conf
     restart: always
     environment:
