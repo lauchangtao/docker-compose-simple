@@ -7,12 +7,14 @@ services:
   springboot:
     hostname: springboot
     # only [a-zA-Z0-9][a-zA-Z0-9_.-] are allowed
+    #容器运行时名称
     container_name: springboot
     # 2.解决容器的依赖、启动先后的问题
     # depends_on:
     #   - mysql
     # 3.选择自己镜像构建的方式 -> image: 远程仓库拉取 or build:上下文构建(可对项目代码进行)
-    #image: java:8
+    #同时指定images，和build 指定build image 名称进行编译镜像
+    image: springboot-jdk8:2.0.3
     build: ./bulid
     # 4.可通过./tomcat/conf/server.xml设置服务端口
     ports:
