@@ -2,6 +2,7 @@ version: '3.7'
 services:
   sentinel1:
     image: redis
+    privileged: true
     container_name: redis-sentinel-1
     ports:
       - 26379:26379
@@ -14,6 +15,7 @@ services:
 
   sentinel2:
     image: redis
+    privileged: true
     container_name: redis-sentinel-2
     ports:
       - 26380:26379
@@ -26,6 +28,7 @@ services:
 
   sentinel3:
     image: redis
+    privileged: true
     container_name: redis-sentinel-3
     ports:
       - 26381:26379
