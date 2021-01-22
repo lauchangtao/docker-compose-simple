@@ -3,7 +3,7 @@ services:
   zookeeper:
     image: wurstmeister/zookeeper
     container_name: kafka_zookeeper
-    hostname: zookeeper
+    hostname: kafka_zookeeper
     ports:
       - "2181:2181"
     restart: always
